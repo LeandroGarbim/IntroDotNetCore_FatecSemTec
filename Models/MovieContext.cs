@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Watchlist.Models.Mappings;
 
 namespace  Watchlist.Models
 {
@@ -10,6 +11,16 @@ namespace  Watchlist.Models
         public MovieContext(DbContextOptions<MovieContext>options)
         :base(options)
         {
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            new UserMapping(modelBuilder.Entity<User>());
+            new MovieMapping(modelBuilder.Entity<Movie>());
+            
 
         }
     }
